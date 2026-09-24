@@ -1,0 +1,708 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   AccountTech design tokens
+   Source: AccountTech Bilingual Brand Identity Guidelines v1.0
+   Balance target: 60% white/light neutrals, 25% navy, 10% teal, 5% mint.
+   Teal (#10B991) is a fill colour. For teal TEXT on white use --accent,
+   which is the same hue darkened to 5.1:1 contrast.
+------------------------------------------------------------------- */
+:root {
+  /* Brand */
+  --navy: #0b2d5b;
+  --navy-hover: #143d75;
+  --navy-deep: #082349;
+  --teal: #10b991;
+  --mint: #34d399;
+  --stone: #e5ebf0;
+  --slate: #475569;
+
+  /* Text-safe teal (5.1:1 on white) */
+  --accent: #0a7d61;
+
+  /* Surfaces */
+  --canvas: #f6f8fa;
+  --surface: #ffffff;
+  --surface-2: #f1f5f8;
+
+  /* Text */
+  --text: #0b2d5b;
+  --text-2: #475569;
+  --text-3: #64748b;
+
+  /* Lines */
+  --border: #d5dee7;
+  --border-soft: #e5ebf0;
+
+  /* Status */
+  --good: #0a7d61;
+  --good-bg: #e6f6f0;
+  --warn: #b45309;
+  --warn-bg: #fdf3e4;
+  --bad: #b42318;
+  --bad-bg: #fdecea;
+  --bad-line: rgba(180, 35, 24, 0.35);
+
+  /* Semantic surfaces (these are what dark mode re-points) */
+  --sidebar: #0b2d5b;
+  --inverse-bg: #0b2d5b;
+  --rule: #0b2d5b;
+  --tile: #e5ebf0;
+  --track: #e5ebf0;
+  --header-bg: rgba(255, 255, 255, 0.94);
+  --on-accent: #ffffff;
+  --on-bad: #ffffff;
+  --focus-border: #0b2d5b;
+  --shadow-card: 0 1px 2px rgba(11, 45, 91, 0.04);
+  --af-a: #0b2d5b;
+  --af-b: #14508c;
+
+  --teal-tint: rgba(16, 185, 145, 0.09);
+  --scrim: rgba(11, 45, 91, 0.45);
+  --focus: #0a7d61;
+
+  /* Type scale (px) */
+  --fs-display: clamp(38px, 5.4vw, 64px);
+  --fs-h1: 32px;
+  --fs-h2: 22px;
+  --fs-h3: 18px;
+  --fs-body: 14.5px;
+  --fs-small: 13px;
+  /* Spacing scale (px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-20: 80px;
+
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-latin: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ar-body: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --font-ar-display: "Noto Kufi Arabic", "Noto Sans Arabic", "Segoe UI", sans-serif;
+}
+
+/* ------------------------------------------------------------------
+   Dark mode (brand rule): navy is the primary dark surface, typography
+   is white, and teal is reserved for action and status.
+------------------------------------------------------------------- */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #071f42;
+  --surface: #0b2d5b;
+  --surface-2: #10386f;
+  --text: #ffffff;
+  --text-2: #c8d3e0;
+  --text-3: #a3b5ce;
+  --border: #2a5288;
+  --border-soft: #1e457a;
+
+  --accent: #34d399;
+  --good: #34d399;
+  --good-bg: rgba(52, 211, 153, 0.14);
+  --warn: #f2b25c;
+  --warn-bg: rgba(242, 178, 92, 0.14);
+  --bad: #ff8f85;
+  --bad-bg: rgba(255, 143, 133, 0.14);
+  --bad-line: rgba(255, 143, 133, 0.45);
+
+  --sidebar: #061b3b;
+  --inverse-bg: #0f3d78;
+  --rule: rgba(255, 255, 255, 0.4);
+  --tile: rgba(255, 255, 255, 0.07);
+  --track: rgba(255, 255, 255, 0.16);
+  --header-bg: rgba(7, 31, 66, 0.92);
+  --on-accent: #082349;
+  --on-bad: #3b0a06;
+  --focus-border: #34d399;
+  --focus: #34d399;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --teal-tint: rgba(52, 211, 153, 0.1);
+  --scrim: rgba(2, 12, 30, 0.7);
+  --af-a: #1b4f8f;
+  --af-b: #2e73bd;
+}
+html[data-theme="dark"] ::selection {
+  background: rgba(52, 211, 153, 0.35);
+  color: #ffffff;
+}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #2a5288;
+  border-color: var(--canvas);
+}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #3a66a3;
+}
+html[data-theme="dark"] .btn-primary {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--navy-deep);
+}
+html[data-theme="dark"] .btn-primary:hover {
+  background: var(--mint);
+  border-color: var(--mint);
+}
+html[data-theme="dark"] .btn-primary:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: transparent;
+  color: #7f95b4;
+}
+html[data-theme="dark"] .btn-ghost:hover,
+html[data-theme="dark"] .field:hover {
+  border-color: #4d7bb5;
+}
+html[data-theme="dark"] .checkbox-brass {
+  border-color: #6f93c2;
+}
+html[data-theme="dark"] .checkbox-brass:checked {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+html[data-theme="dark"] .checkbox-brass:checked::after {
+  border-color: var(--navy-deep);
+}
+html[data-theme="dark"] .logo-frame {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 6px 12px;
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-teal: var(--teal);
+  --color-mint: var(--mint);
+  --color-stone: var(--stone);
+  --color-slate: var(--slate);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-border: var(--border);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-latin), var(--font-ar-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--canvas);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-latin), var(--font-ar-body);
+  -webkit-font-smoothing: antialiased;
+  font-size: 14.5px;
+  line-height: 1.55;
+  font-feature-settings: "kern", "liga";
+}
+
+/* Arabic is a first-class language: its own type stack, taller leading,
+   and no letter-spacing (tracking breaks Arabic letter joining). */
+html[dir="rtl"] body {
+  font-family: var(--font-ar-body), var(--font-latin);
+  line-height: 1.75;
+}
+html[dir="rtl"] * {
+  letter-spacing: normal !important;
+}
+
+.display {
+  font-family: var(--font-latin), var(--font-ar-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+html[dir="rtl"] .display {
+  font-family: var(--font-ar-display), var(--font-latin);
+  line-height: 1.4;
+}
+
+/* Numerals: tabular everywhere money appears (brand rule) */
+.mono,
+.num {
+  font-family: inherit;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum", "lnum";
+}
+
+/* Inline Arabic snippet inside an English screen */
+.ar {
+  font-family: var(--font-ar-body), var(--font-latin);
+  line-height: 1.7;
+}
+.ar-display {
+  font-family: var(--font-ar-display), var(--font-latin);
+  font-weight: 700;
+}
+
+::selection {
+  background: rgba(16, 185, 145, 0.28);
+  color: var(--navy-deep);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: #c5d1dc;
+  border-radius: 8px;
+  border: 3px solid var(--canvas);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a9bac9;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.on-navy :focus-visible {
+  outline-color: var(--mint);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-3);
+}
+input,
+textarea {
+  caret-color: var(--accent);
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum", "lnum";
+}
+th {
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------
+   Motion: 180–320 ms, decelerating, no bounce (brand rule).
+   Elements arrive, align, and settle.
+------------------------------------------------------------------- */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes shimmerSweep {
+  from {
+    background-position: -400px 0;
+  }
+  to {
+    background-position: 400px 0;
+  }
+}
+@keyframes calmPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes spinKeyframes {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.rise {
+  animation: riseIn 0.32s var(--ease) both;
+}
+.fade {
+  animation: fadeIn 0.24s ease both;
+}
+.page-enter {
+  animation: fadeIn 0.28s ease both;
+}
+.pop-in {
+  animation: fadeIn 0.24s ease both;
+}
+.brass-rule {
+  transform-origin: left center;
+  animation: drawLine 0.32s var(--ease) both;
+}
+
+.spin {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spinKeyframes 0.8s linear infinite;
+}
+
+.hairline {
+  height: 1px;
+  background: var(--border);
+}
+.hairline-soft {
+  height: 1px;
+  background: var(--border-soft);
+}
+.rule-navy {
+  height: 1px;
+  background: var(--rule);
+}
+
+/* ------------------------------------------------------------------
+   Controls
+------------------------------------------------------------------- */
+.btn-primary {
+  background: var(--navy);
+  color: #ffffff;
+  border: 1px solid var(--navy);
+  border-radius: var(--radius-control);
+  font-weight: 600;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.12s ease;
+}
+.btn-primary:hover {
+  background: var(--navy-hover);
+  border-color: var(--navy-hover);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+.btn-primary:disabled {
+  background: var(--stone);
+  border-color: var(--stone);
+  color: #7b8a9b;
+  cursor: not-allowed;
+}
+
+.btn-accent {
+  background: var(--teal);
+  color: var(--navy-deep);
+  border: 1px solid var(--teal);
+  border-radius: var(--radius-control);
+  font-weight: 600;
+  transition: background 0.18s ease;
+}
+.btn-accent:hover {
+  background: var(--mint);
+  border-color: var(--mint);
+}
+
+.btn-ghost {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  color: var(--text);
+  font-weight: 500;
+  transition:
+    border-color 0.16s ease,
+    background 0.16s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--rule);
+  background: var(--surface-2);
+}
+.btn-ghost:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.field {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  color: var(--text);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.field:hover {
+  border-color: #b8c6d3;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--focus-border);
+  box-shadow: 0 0 0 3px rgba(16, 185, 145, 0.25);
+}
+select.field {
+  padding-inline-end: 2rem;
+}
+
+.checkbox-brass {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #9fb0c1;
+  border-radius: 5px;
+  background: var(--surface);
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.checkbox-brass:hover {
+  border-color: var(--rule);
+}
+.checkbox-brass:checked {
+  background: var(--navy);
+  border-color: var(--navy);
+}
+.checkbox-brass:checked::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 5px;
+  top: 1.5px;
+  width: 5px;
+  height: 9px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.tab-underline {
+  position: relative;
+}
+.tab-underline::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.24s var(--ease);
+}
+html[dir="rtl"] .tab-underline::after {
+  transform-origin: right;
+}
+.tab-underline.active::after {
+  transform: scaleX(1);
+}
+
+.click-scale {
+  transition: transform 0.12s ease;
+}
+.click-scale:active {
+  transform: scale(0.98);
+}
+
+/* ------------------------------------------------------------------
+   Surfaces
+------------------------------------------------------------------- */
+.card-flat {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+.card-lift {
+  transition: border-color 0.2s ease;
+}
+.drawer {
+  transition: transform 0.28s var(--ease);
+  border-radius: 0;
+}
+
+.row-hover {
+  transition: background 0.14s ease;
+}
+.row-hover:hover {
+  background: var(--surface-2);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Filled status chip: Matched / Classified / Needs review */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Calm status stamp (replaces the old rotated stamp) */
+.stamp {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  animation: fadeIn 0.24s ease both;
+}
+
+.toast {
+  animation: riseIn 0.28s var(--ease) both;
+  box-shadow: 0 10px 30px -12px rgba(11, 45, 91, 0.35);
+}
+
+.skeleton {
+  background: var(--track);
+  animation: calmPulse 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+.count-up {
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-track {
+  background: var(--track);
+  height: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  background: var(--teal);
+  height: 100%;
+  transform-origin: left;
+  border-radius: 4px;
+}
+
+.confidence-bar {
+  height: 4px;
+  background: var(--track);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.confidence-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: transform 0.32s var(--ease);
+  transform-origin: left;
+}
+
+/* Directional glyphs flip in RTL */
+.arrow-nudge,
+.arrow-nudge-left {
+  display: inline-block;
+  transition: transform 0.24s var(--ease);
+}
+html[dir="rtl"] .arrow-nudge,
+html[dir="rtl"] .arrow-nudge-left {
+  transform: scaleX(-1);
+}
+.row-hover:hover .arrow-nudge {
+  transform: translateX(3px);
+}
+html[dir="rtl"] .row-hover:hover .arrow-nudge {
+  transform: scaleX(-1) translateX(3px);
+}
+.back-link {
+  transition: color 0.15s ease;
+}
+.back-link:hover {
+  color: var(--text) !important;
+}
+.rtl-flip {
+  display: inline-block;
+}
+html[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Numeric columns keep digits LTR inside RTL text */
+.ltr-num {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* ------------------------------------------------------------------
+   Marketing helpers
+------------------------------------------------------------------- */
+.angled-clip {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html[data-theme="dark"] aside {
+  border-inline-end: 1px solid var(--border-soft);
+}
+
+.logo-frame {
+  width: fit-content;
+  align-self: flex-start;
+}
+
+/* Arabic sub-labels beside English headings: redundant once the page is in Arabic */
+html[dir="rtl"] .ar-secondary {
+  display: none;
+}
